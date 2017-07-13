@@ -1,0 +1,7 @@
+src/app/code/community/Maven/Html5uploader                                              app/code/community/Maven/Html5uploader
+src/app/design/adminhtml/default/default/layout/maven_html5uploader.xml                 app/design/adminhtml/default/default/layout/maven_html5uploader.xml                            
+src/app/design/adminhtml/default/default/template/maven/uploader                        app/design/adminhtml/default/default/template/maven/uploader                        
+src/app/etc/modules/Maven_Html5uploader.xml                                             app/etc/modules/Maven_Html5uploader.xml
+src/app/locale/en_US/Maven_Html5uploader.csv                                            app/locale/en_US/Maven_Html5uploader.csv    
+src/skin/adminhtml/default/default/css/maven_html5upload                                skin/adminhtml/default/default/css/maven_html5upload                
+src/skin/adminhtml/default/default/js/maven_html5upload                                 skin/adminhtml/default/default/js/maven_html5upload            

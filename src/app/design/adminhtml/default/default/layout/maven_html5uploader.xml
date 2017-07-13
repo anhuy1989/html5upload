@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss" ifconfig="maven/config/enable"><name>css/maven_html5upload/styles.css</name></action>
+            <action method="addItem" ifconfig="maven/config/enable">
+                <type>skin_js</type>
+                <name>js/maven_html5upload/jsuploader.js</name>
+            </action>
+            <action method="addItem" ifconfig="maven/config/enable">
+                <type>skin_js</type>
+                <name>js/maven_html5upload/uploader.js</name>
+            </action>
+            <action method="addItem" ifconfig="maven/config/enable">
+                <type>skin_js</type>
+                <name>js/maven_html5upload/script.js</name>
+            </action>
+        </reference>
+        <reference name="wysiwyg_images.uploader">
+            <action method="setTemplate" ifconfig="maven/config/enable">
+                <template>maven/uploader/cms_uploader.phtml</template>
+            </action>
+        </reference>
+    </default>
+    <adminhtml_cms_wysiwyg_images_index>
+        <reference name="wysiwyg_images.uploader">
+            <action method="setTemplate" ifconfig="maven/config/enable">
+                <template>maven/uploader/cms_uploader.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_cms_wysiwyg_images_index>
+
+    <adminhtml_cms_wysiwyg_images_chooser_index>
+        <reference name="wysiwyg_images.uploader">
+            <action method="setTemplate" ifconfig="maven/config/enable">
+                <template>maven/uploader/cms_uploader.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_cms_wysiwyg_images_chooser_index>
+</layout>

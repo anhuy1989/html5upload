@@ -1,0 +1,74 @@
+<div id="<?php echo $this->getHtmlId() ?>" class="uploader">
+    <div class="buttons">
+        <div class="no-display" id="<?php echo $this->getHtmlId() ?>-uploadBlockTemplate"><div id="uploadBlock-{{id}}">
+                <form action="{{url}}" enctype="multipart/form-data" encoding="multipart/form-data" method="post" target="uploadBlockIframe-{{id}}">
+                    <input type="file" name="image"/>
+                    <input type="hidden" name="Filename"/>
+                    <input type="hidden" name="form_key" value="{{formKey}}"/>
+                    <input type="hidden" name="Upload" value="Submit Query"/>
+                </form>
+                <iframe name="uploadBlockIframe-{{id}}" style="display:none;"></iframe>
+            </div></div>
+        <div id="uploadBlocks" style="float:left;margin-right: 0.5em;"></div>
+        <?php echo $this->getUploadButtonHtml() ?>
+    </div>
+    <div class="clear"></div>
+    <div class="no-display" id="<?php echo $this->getHtmlId() ?>-template">
+        <div id="{{id}}" class="file-row">
+            <span class="file-info">{{name}} ({{size}})</span>
+            <span class="delete-button"><?php echo $this->getDeleteButtonHtml() ?></span>
+            <span class="progress-text"></span>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="no-display" id="<?php echo $this->getHtmlId() ?>-template-progress">
+        {{percent}}% {{uploaded}} / {{total}}
+    </div>
+</div>
+
+<div class="maven_html5upload">
+    <form id="upload"
+          action="<?php echo Mage::getModel('adminhtml/url')->addSessionParam()->getUrl('adminhtml/ajax/cmsupload' ,array('form_key' => Mage::getSingleton('core/session')->getFormKey()));?>"
+          method="POST"
+          enctype="multipart/form-data"
+          data-remove-action="<?php echo Mage::getModel('adminhtml/url')->addSessionParam()->getUrl('adminhtml/ajax/remove' ,array('form_key' => Mage::getSingleton('core/session')->getFormKey()));?>"
+    >
+        <fieldset>
+            <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="<?php echo $this->getMaxFileSize(); ?>" />
+            <div>
+                <label for="fileselect"><?php echo $this->__('Files to upload:'); ?></label>
+                <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+                <div id="filedrag"><?php echo $this->__('or drop files here'); ?></div>
+            </div>
+
+            <div id="submitbutton">
+                <button type="submit"><?php echo $this->__('Upload Files'); ?></button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+    <div id="progress"></div>
+
+    <div id="maven_messages">
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        <?php $magentoVersion = Mage::getVersion(); ?>
+        <?php $patch8788NotApplied = Mage::helper('maven_html5uploader')->ifPatch8788NotAppied($this); ?>
+        <?php if (version_compare($magentoVersion, '1.9.3', '>=') || !$patch8788NotApplied): ?>
+            var uploader = new JsUploader('<?php echo $this->getHtmlId() ?>', <?php echo $this->getJsonConfig() ?>);
+        <?php else: ?>
+            <?php echo $this->getJsObjectName() ?> = new JsUploader('<?php echo $this->getHtmlId() ?>', <?php echo $this->getConfigJson() ?>);
+        <?php endif; ?>
+        (function() {
+            // call initialization file
+            if (window.File && window.FileList && window.FileReader) {
+                Init();
+            }
+        })();
+        //]]>
+    </script>
+</div>
+
